@@ -1,9 +1,11 @@
+import { Container } from "react-bootstrap"
+import HomeBanner from "../HomeBanner/HomeBanner";
 
 const Home = () => {
     return (
-        <div>
-            <h2>This is home</h2>
-        </div>
+        <Container>
+            <HomeBanner></HomeBanner>
+        </Container>
     );
 };
 
