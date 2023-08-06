@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { FaArrowRight } from "react-icons/fa";
+import { Rating } from '@smastrom/react-rating'
+import '@smastrom/react-rating/style.css'
 
 
 const PopularRecipes = () => {
@@ -24,7 +26,7 @@ const PopularRecipes = () => {
         {
           allRecipes &&
           allRecipes.map((recipe) => (
-            <li key={recipe.name} className="recipe-item d-flex flex-column align-items-center align-items-center justify-content-between">
+            <li key={recipe.name} className="recipe-item d-flex flex-column align-items-center  justify-content-between">
               <div>
                 <h3 className="recipe-name">{recipe.name}</h3>
                 <img src={recipe.image} alt={recipe.name} className="recipe-image" />
@@ -32,8 +34,19 @@ const PopularRecipes = () => {
                 <p className="recipe-ingredients p-3"><span className='fw-bold'>Ingredients:</span> {recipe.ingredients.join(', ')}</p>
 
               </div>
-              <Button className="mb-3 me-3 align-self-end " variant="dark">View Details <FaArrowRight></FaArrowRight>
-              </Button>
+              <div className="d-flex align-items-center  justify-content-between">
+                <div className="d-flex me-5">
+                  <Rating className=""
+                    style={{ maxWidth: 75 }}
+                    value={recipe.rating}
+                    readOnly
+                  /> <span>{recipe.rating}</span>
+                </div>
+
+                <Button className="mb-3  align-self-end " variant="dark">View Details <FaArrowRight></FaArrowRight>
+                </Button>
+
+              </div>
 
 
             </li>
