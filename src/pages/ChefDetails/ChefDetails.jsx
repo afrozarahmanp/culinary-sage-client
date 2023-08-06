@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import { FaArrowRight, FaThumbsUp } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 
 const ChefDetails = () => {
 
 
+
+
     const [chefDetails, setchefDetails] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/data')
+        fetch('http://localhost:3000/recipes')
             .then(res => res.json())
             .then(data => setchefDetails(data))
             .catch(error => console.error(error))
@@ -42,7 +45,7 @@ const ChefDetails = () => {
                                 </Card.Body>
                                 <div className="d-flex align-items-center  justify-content-between">
 
-                                    <Button className="mb-3  align-self-end " variant="dark">View Details <FaArrowRight></FaArrowRight>
+                                    <Button className="mb-3  align-self-end " variant="dark"><Link className="text-white" to={`/chefdetails/${chefDetail.id}`}>View Details <FaArrowRight></FaArrowRight></Link>
                                     </Button>
                                 </div>
 

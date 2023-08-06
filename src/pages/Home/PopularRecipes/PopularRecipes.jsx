@@ -3,13 +3,14 @@ import { Button } from "react-bootstrap";
 import { FaArrowRight } from "react-icons/fa";
 import { Rating } from '@smastrom/react-rating'
 import '@smastrom/react-rating/style.css'
+import { Link } from "react-router-dom";
 
 
 const PopularRecipes = () => {
 
   const [popularRecipes, setPopularRecipes] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:3000/data')
+    fetch('http://localhost:3000/recipes')
       .then(res => res.json())
       .then(data => setPopularRecipes(data))
       .catch(error => console.error(error))
@@ -18,7 +19,7 @@ const PopularRecipes = () => {
   console.log(allRecipes)
   // const allRecipes = popularRecipes[0].recipes;
   // console.log(allRecipes)
-
+  console.log(popularRecipes.id)
   return (
     <div className="recipes-container">
       <h2 className="title">Popular Chinese Cuisine Recipes</h2>
@@ -43,7 +44,9 @@ const PopularRecipes = () => {
                   /> <span>{recipe.rating}</span>
                 </div>
 
-                <Button className="mb-3  align-self-end " variant="dark">View Details <FaArrowRight></FaArrowRight>
+                <Button className="mb-3  align-self-end " variant="dark">
+                  <Link to={`/recipes/${recipe.id}`} className="text-white">View Details <FaArrowRight></FaArrowRight>
+                  </Link>
                 </Button>
 
               </div>
