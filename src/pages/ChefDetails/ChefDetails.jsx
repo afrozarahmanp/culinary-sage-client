@@ -12,7 +12,7 @@ const ChefDetails = () => {
     const [chefDetails, setchefDetails] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:3000/recipes')
+        fetch('https://culinary-sage-server-afrozarahmanp.vercel.app/recipes')
             .then(res => res.json())
             .then(data => setchefDetails(data))
             .catch(error => console.error(error))

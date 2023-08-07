@@ -22,13 +22,13 @@ const router = createBrowserRouter([
         {
           path: '/recipes/:id',
           element: <PrivateRoute><FoodDetails></FoodDetails></PrivateRoute>,
-          loader: ({params}) => fetch(`http://localhost:3000/recipes/${params.id}`)
+          loader: ({params}) => fetch(`https://culinary-sage-server-afrozarahmanp.vercel.app/recipes/${params.id}`)
 
         },
         {
           path: '/chefdetails/:id',
           element:<PrivateRoute><ChefAllDetails></ChefAllDetails></PrivateRoute>,
-          loader: ({params}) => fetch(`http://localhost:3000/chefdetails/${params.id}`)
+          loader: ({params}) => fetch(`https://culinary-sage-server-afrozarahmanp.vercel.app/chefdetails/${params.id}`)
 
         },
         {
