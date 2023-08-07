@@ -6,7 +6,13 @@ import { FaUserCircle } from "react-icons/fa";
 
 const Header = () => {
 
-    const { user } = useContext(AuthContext);
+    const { user, logOut } = useContext(AuthContext);
+
+    const handleLogout = () => {
+        logOut()
+            .then()
+            .catch(error => console.log(error))
+    }
 
 
     return (
@@ -26,7 +32,7 @@ const Header = () => {
                                 <FaUserCircle className="text-white me-3" style={{ fontSize: "2rem" }} />
                             }
 
-                            {user ? <Button variant='dark'>Logout</Button> :
+                            {user ? <Button onClick={handleLogout} variant='dark'>Logout</Button> :
                                 <Link to='/login'>
                                     <Button variant='dark' >Login</Button>
                                 </Link>
