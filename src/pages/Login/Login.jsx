@@ -1,8 +1,17 @@
+import { useContext } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 
 const Login = () => {
+
+    const { signIn } = useContext(AuthContext)
+
+const handleLogin = event => {
+    event.preventDefault();
+}
+
     return (
         <div>
             <Container className=" mx-auto mt-5">
@@ -10,7 +19,7 @@ const Login = () => {
                     <div className="row mx-auto">
                         <div className="col-lg-6 col-md-8 col-sm-10 col-xs-12 mx-auto">
                             <h3>Please Login</h3>
-                            <Form className="">
+                            <Form onSubmit={handleLogin} className="">
                                 <Form.Group className="mb-3" controlId="formBasicEmail">
                                     <Form.Label>Email address</Form.Label>
                                     <Form.Control type="email" name="email" placeholder="Enter email" required />
