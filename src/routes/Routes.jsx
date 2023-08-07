@@ -8,6 +8,7 @@ import Login from "../pages/Login/Login";
 import Register from "../pages/Login/Register";
 import Terms from "../pages/Login/Terms";
 import PrivateRoute from "./PrivateRoute";
+import NotFound from "../pages/NotFound/NotFound";
 
 
 const router = createBrowserRouter([
@@ -42,9 +43,15 @@ const router = createBrowserRouter([
         {
           path: '/terms',
           element: <Terms></Terms>
-        }
+        },
+
+
     ]
   },
+  {
+    path: '*',
+    element:<NotFound></NotFound>
+  }
 ]);
 
 export default router;

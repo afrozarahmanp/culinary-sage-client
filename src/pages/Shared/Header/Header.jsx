@@ -19,7 +19,7 @@ const Header = () => {
         <Container>
             <Navbar bg="dark" data-bs-theme="dark" collapseOnSelect expand="lg" className="bg-body-tertiary p-3">
                 <Container>
-                    <Navbar.Brand className="fw-bold fs-2 ps-2" href="#home">CulinarySage</Navbar.Brand>
+                    <Navbar.Brand className="fw-bold fs-2 ps-2" href="/">CulinarySage</Navbar.Brand>
                     <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                     <Navbar.Collapse id="responsive-navbar-nav">
                         <div className="mx-auto gap-2 d-flex flex-row">
