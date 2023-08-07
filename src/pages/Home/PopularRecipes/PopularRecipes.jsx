@@ -15,6 +15,8 @@ const PopularRecipes = () => {
       .then(data => setPopularRecipes(data))
       .catch(error => console.error(error))
   }, [])
+
+  
   const allRecipes = popularRecipes[0]?.recipes;
   console.log(allRecipes)
   // const allRecipes = popularRecipes[0].recipes;
@@ -48,6 +50,7 @@ const PopularRecipes = () => {
                   <Link to={`/recipes/${recipe.id}`} className="text-white">View Details <FaArrowRight></FaArrowRight>
                   </Link>
                 </Button>
+              
 
               </div>
 
