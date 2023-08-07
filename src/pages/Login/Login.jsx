@@ -3,7 +3,7 @@ import { Button, Container, Form } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import { FaGithub, FaGoogle } from "react-icons/fa";
-import {GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import {GithubAuthProvider, GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
 import app from "../../firebase/firebase.config";
 
 
@@ -51,6 +51,19 @@ const Login = () => {
 
     }
 
+    const githubProvider = new GithubAuthProvider;
+    const handleGithubSignIn =()=>{
+        signInWithPopup(auth,githubProvider)
+        .then(result=>{
+            const loggedUser = result.user;
+            console.log(loggedUser)
+            navigate(from, {replace: true })
+            
+        })
+        .catch(error=>{
+            console.log(error);
+        })
+    }
     return (
         <div>
             <Container className=" mx-auto mt-5">
@@ -82,7 +95,7 @@ const Login = () => {
                             <Button onClick={handleGoogleSignIn} className='w-100 mb-3' variant="primary" type="submit"><FaGoogle className="me-2"></FaGoogle>
                                 Login With Google
                             </Button>
-                            <Button className='w-100' variant="secondary" type="submit"><FaGithub className="me-2"></FaGithub>
+                            <Button onClick={handleGithubSignIn} className='w-100' variant="secondary" type="submit"><FaGithub className="me-2"></FaGithub>
                                 Login With Github
                             </Button>
 
