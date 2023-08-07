@@ -4,13 +4,15 @@ import { initializeApp } from "firebase/app";
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
+
+console.log('environment variable', import.meta.env.apiKey)
 const firebaseConfig = {
-  apiKey: "AIzaSyBoKoqOb3kBHHj8VvMjfAc4zMFW1qjL1sY",
-  authDomain: "culinary-sage.firebaseapp.com",
-  projectId: "culinary-sage",
-  storageBucket: "culinary-sage.appspot.com",
-  messagingSenderId: "184316087417",
-  appId: "1:184316087417:web:4eec91129d65d2269258a8"
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_PROJECTID,
+  storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_APPID
 };
 
 // Initialize Firebase
