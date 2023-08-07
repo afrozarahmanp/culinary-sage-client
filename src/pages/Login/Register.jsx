@@ -5,6 +5,9 @@ import { AuthContext } from "../../providers/AuthProvider";
 
 
 const Register = () => {
+
+    const [error, setError] = useState('');
+
     const { createUser } = useContext(AuthContext);
     const [accepted, setAccepted] = useState(false);
 
@@ -23,23 +26,31 @@ const Register = () => {
         const photo = form.photo.value;
         const password = form.password.value;
 
-        console.log(name, photo, email, password)
+
+        console.log(name, photo, email, password);
+
+        if (!/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/.test(password)) {
+            setError('Password must contain atleast one capital letter, one number, one symbol and 8 characters long')
+            return
+        }
+
 
         createUser(email, password)
 
             .then(result => {
                 const createdUser = result.user;
                 console.log(createdUser);
-                navigate(from, {replaCE: true})
+                navigate(from, { replaCE: true })
             })
-            .catch(error =>{
+            .catch(error => {
                 console.log(error);
+                setError(error.message)
             })
 
     }
 
-    const handleAccepted = event =>{
-        setAccepted(event.target.checked)
+    const handleAccepted = event => {
+        setAccepted(event.target.checked);
     }
     return (
 
@@ -70,8 +81,11 @@ const Register = () => {
                                 <Form.Group className="mb-3" controlId="formBasicCheckbox">
                                     <Form.Check onClick={handleAccepted} type="checkbox" name="accept" label={<>Accept <Link to='/terms'>Terms and Conditions</Link></>} />
                                 </Form.Group>
+                                <Form.Text className='text-danger'>
+                                    {error}
+                                </Form.Text> <br />
 
-                                <Button  disabled={!accepted} variant="dark" type="submit">
+                                <Button disabled={!accepted} variant="dark" type="submit">
                                     Register
                                 </Button> <br />
                                 <Form.Text className="text-black">

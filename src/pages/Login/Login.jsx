@@ -1,10 +1,11 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 
 const Login = () => {
+    const [error, setError] = useState('');
 
     const { signIn } = useContext(AuthContext)
     const navigate = useNavigate();
@@ -27,6 +28,7 @@ const Login = () => {
         })
         .catch(error=>{
             console.log(error)
+            setError(error.message)
         })
     }
 
@@ -55,13 +57,10 @@ const Login = () => {
                                 <Form.Text className="text-black">
                                     Do not have an Account? <Link to='/register'>Register</Link>
                                 </Form.Text>
-                                <Form.Text className="text-success">
-
-                                </Form.Text>
-                                <Form.Text className="text-danger">
-
-                                </Form.Text>
+                                <p className="text-danger">{error}</p>
+                                
                             </Form>
+                            
                         </div>
                     </div>
                 </div>
