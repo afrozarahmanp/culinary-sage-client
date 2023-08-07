@@ -47,7 +47,7 @@ const FoodDetails = () => {
                             onClick={handleClick}
                             disabled={isButtonDisabled}
                         >
-                            {isButtonDisabled ? 'Already added' : 'Add to Favourite'}
+                            {isButtonDisabled ? 'Favourite added' : 'Add to Favourite'}
                         </Button>
                     </div>
                 </div>
