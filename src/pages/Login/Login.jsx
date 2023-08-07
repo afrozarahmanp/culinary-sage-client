@@ -2,6 +2,9 @@ import { useContext, useState } from "react";
 import { Button, Container, Form } from "react-bootstrap";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import { FaGithub, FaGoogle } from "react-icons/fa";
+import {GoogleAuthProvider, getAuth, signInWithPopup } from "firebase/auth";
+import app from "../../firebase/firebase.config";
 
 
 const Login = () => {
@@ -21,15 +24,31 @@ const Login = () => {
         console.log(email, password);
 
         signIn(email, password)
-        .then(result =>{
-            const loggedUser = result.user;
-            console.log(loggedUser);
-            navigate(from, {replaCE: true})
-        })
-        .catch(error=>{
-            console.log(error)
-            setError(error.message)
-        })
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser);
+                navigate(from, { replaCE: true })
+            })
+            .catch(error => {
+                console.log(error)
+                setError(error.message)
+            })
+    }
+
+    const auth = getAuth(app);
+    const googleProvider = new GoogleAuthProvider;
+    const handleGoogleSignIn = () => {
+        signInWithPopup(auth, googleProvider)
+            .then(result => {
+                const loggedUser = result.user;
+                console.log(loggedUser)
+                navigate(from, { replace: true })
+
+            })
+            .catch(error => {
+                console.log(error);
+            })
+
     }
 
     return (
@@ -58,10 +77,17 @@ const Login = () => {
                                     Do not have an Account? <Link to='/register'>Register</Link>
                                 </Form.Text>
                                 <p className="text-danger">{error}</p>
-                                
+
                             </Form>
-                            
+                            <Button onClick={handleGoogleSignIn} className='w-100 mb-3' variant="primary" type="submit"><FaGoogle className="me-2"></FaGoogle>
+                                Login With Google
+                            </Button>
+                            <Button className='w-100' variant="secondary" type="submit"><FaGithub className="me-2"></FaGithub>
+                                Login With Github
+                            </Button>
+
                         </div>
+
                     </div>
                 </div>
             </Container>
