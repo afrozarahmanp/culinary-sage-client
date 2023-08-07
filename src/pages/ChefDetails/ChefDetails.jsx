@@ -21,7 +21,7 @@ const ChefDetails = () => {
     console.log(chefDetails)
     return (
         <div className="recipes-container ">
-            <h2 className="title">Chef Details</h2>
+            <h2 className="title mt-5">Chef Details</h2>
             <ul className="recipes-list">
                 <Row xs={1} md={2} lg={3} className="g-4">
                     {chefDetails.map((chefDetail) => (
